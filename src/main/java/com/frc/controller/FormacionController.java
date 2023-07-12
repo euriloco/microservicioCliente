@@ -23,7 +23,7 @@ public class FormacionController {
 	}
 
 	@GetMapping(value = "alta/{nombreCurso}/{asignaturas}/{precio}")
-	public Curso altaFormacion(@PathVariable("nombreCurso") String curso,
+	public Formacion altaFormacion(@PathVariable("nombreCurso") String curso,
 										@PathVariable("asignaturas") int asignaturas, 
 										@PathVariable("precio") double precio) {
 		Formacion formacion = new Formacion(curso, asignaturas, precio);

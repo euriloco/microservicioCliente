@@ -30,19 +30,9 @@ public class FormacionServiceImpl implements FormacionService {
 	}
 
 	@Override
-	public Curso altaCurso(Formacion formacion) {
+	public Formacion altaCurso(Formacion formacion) {
 		Curso[] cursos = template.getForObject(url + "/listado", Curso[].class);
-		/*
-		 * for(Curso curso: cursos) { if(formacion.getCurso().toLowerCase() !=
-		 * curso.getNombre().toLowerCase()) { System.out.println("Dentro service ALTA");
-		 * curso.setHoras(formacion.getAsignaturas()*10); String codigo = (String.
-		 * valueOf(formacion.getCurso().charAt(0))+ String.
-		 * valueOf(formacion.getCurso().charAt(1))+ String.
-		 * valueOf(formacion.getCurso().charAt(2))+ Integer.
-		 * toString(formacion.getAsignaturas()*10)); System.out.println(codigo);
-		 * curso.setCodCurso(codigo); template.postForLocation(url+"/alta", curso);
-		 * 
-		 */
+	
 		// Verificar si ya existe un curso con el mismo nombre
 		for (Curso curso : cursos) {
 			if (curso.getNombre().equalsIgnoreCase(formacion.getCurso())) {
@@ -62,7 +52,8 @@ public class FormacionServiceImpl implements FormacionService {
 		// Crear y retornar el nuevo objeto Curso
 		Curso cursoNuevo = new Curso(codCurso, formacion.getCurso(), duracion, formacion.getPrecio());
 		template.postForLocation(url + "/alta", cursoNuevo);
-		return cursoNuevo;
+		return formacion;
+		
 	}
 
 }
